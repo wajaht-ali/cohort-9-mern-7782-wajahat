@@ -1,9 +1,17 @@
-import Router from 'express';
+import express from 'express'; 
 
-const router = Router();
+const router = express.Router(); 
 
-router.post('/signup');
-router.post('/login');
-router.put('/update');
+router.post('/signup', (req, res) => {
+    res.status(200).json({ message: "Signup route working!" });
+});
 
-export default router;
+router.post('/login', (req, res) => {
+    res.status(200).json({ message: "Login route working!" });
+});
+
+router.put('/update', (req, res) => {
+    res.status(200).json({ message: "Update route working!" });
+});
+
+export { router as authRoutes }; 

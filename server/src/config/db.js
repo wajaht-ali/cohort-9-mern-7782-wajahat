@@ -11,6 +11,10 @@ export const pool = new Pool({
     database: config.DATABASE,
 });
 
+pool.on('error', (err, client) => {
+    console.error('❌ Unexpected error on idle database client', err);
+});
+
 const connectDB = async () => {
     try {
         const client = await pool.connect();
