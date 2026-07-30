@@ -6,10 +6,12 @@ const _config = {
     PORT: parseInt(process.env.PORT || '8000', 10),
     JWT_SECRET_KEY: process.env.JWT_SECRET_KEY,
     USER: process.env.DB_USER,
-    PASSWORD: process.env.DB_PASSWORD, 
+    PASSWORD: process.env.DB_PASSWORD,
     HOST: process.env.DB_HOST,
     DB_PORT: parseInt(process.env.DB_PORT || '5432', 10),
     DATABASE: process.env.DB_NAME,
+    CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000'
+
 };
 
 const config = Object.freeze(_config);

@@ -1,9 +1,10 @@
 import express from "express";
 import cors from "cors";
 import { authRoutes } from "./routes/authRoutes.js";
+import config from "./config/config.js";
 const app = express();
 
-const allowedOrigins = ['http://localhost:3000'];
+const allowedOrigins = config.CORS_ORIGIN.split(',');
 
 app.use(cors({
     origin: (origin, callback) => {
@@ -18,10 +19,6 @@ app.use(cors({
 }));
 app.use(express.json());
 
-app.use("/api/v1/authRoutes", authRoutes);
-
-app.get("/health", (req, res) => {
-    res.status(200).json({ message: "Server is healthy!" })
-})
+app.use("/api/auth", authRoutes);
 
 export default app;
