@@ -4,7 +4,7 @@ import { authRoutes } from "./routes/authRoutes.js";
 import config from "./config/config.js";
 const app = express();
 
-const allowedOrigins = config.CORS_ORIGIN.split(',');
+const allowedOrigins = config.CORS_ORIGIN.split(',').map(origin => origin.trim());
 
 app.use(cors({
     origin: (origin, callback) => {
