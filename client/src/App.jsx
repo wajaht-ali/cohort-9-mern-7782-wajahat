@@ -4,7 +4,7 @@ function App() {
 
   return (
     <div>
-      <p>Hello</p>
+      <p className='text-2xl text-blue-500'>Hello</p>
     </div>
   )
 }
