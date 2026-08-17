@@ -19,7 +19,7 @@ export const signupController = async (req, res) => {
             });
         }
 
-        const existingUser = await findUserByEmail(email.toLowerCase());
+        const existingUser = await findUserByEmail(email.trim().toLowerCase());
 
         if (existingUser) {
             return res.status(409).json({
@@ -45,8 +45,9 @@ export const signupController = async (req, res) => {
         });
 
     } catch (error) {
-        console.error(error);
-
+        if (error.code === '23505') {
+            return res.status(409).json({ message: "Email already exists." });
+        }
         return res.status(500).json({
             message: "Something went wrong.",
         });
@@ -63,7 +64,7 @@ export const loginController = async (req, res) => {
             });
         }
 
-        const user = await findUserByEmail(email.toLowerCase());
+        const user = await findUserByEmail(email.trim().toLowerCase());
 
         if (!user) {
             return res.status(401).json({

@@ -1,13 +1,11 @@
 import jwt from "jsonwebtoken";
-import config from "../config/config";
+import config from "../config/config.js";
 
 export const authenticateUser = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
-    if (!authHeader) {
-        return res.status(401).json({
-            message: "Access denied."
-        });
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+        return res.status(401).json({ message: "Authorization denied." });
     }
 
     const token = authHeader.split(" ")[1];

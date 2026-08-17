@@ -10,8 +10,13 @@ export const createUser = async ({ name, email, passwordHash }) => {
         values: [name, email, passwordHash],
     };
 
-    const { rows } = await pool.query(query);
-    return rows[0];
+    try {
+        const { rows } = await pool.query(query);
+        return rows[0];
+    } catch (error) {
+        console.error("Database error in createUser:", error.message);
+        throw error;
+    }
 };
 
 export const findUserByEmail = async (email) => {
