@@ -21,7 +21,9 @@ const _config = {
     HOST: process.env.DB_HOST,
     DB_PORT: validatePort(process.env.DB_PORT || '5432', 'DB_PORT'),
     DATABASE: process.env.DB_NAME,
-    CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000'
+    CORS_ORIGIN: process.env.CORS_ORIGIN || 'http://localhost:3000',
+    JWT_SECRET: process.env.JWT_SECRET,
+    JWT_EXPIRES_IN: process.env.JWT_EXPIRES_IN || '1h',
 };
 
 if (!_config.USER || !_config.PASSWORD || !_config.HOST || !_config.DATABASE) {

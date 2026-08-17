@@ -1,17 +1,14 @@
-import express from 'express'; 
+import express from 'express';
+import { loginController, signupController } from '../controllers/authController.js';
 
-const router = express.Router(); 
+const router = express.Router();
 
-router.post('/signup', (req, res) => {
-    res.status(200).json({ message: "Signup route working!" });
-});
+router.post('/signup', signupController);
 
-router.post('/login', (req, res) => {
-    res.status(200).json({ message: "Login route working!" });
-});
+router.post('/login', loginController);
 
 router.put('/update', (req, res) => {
     res.status(200).json({ message: "Update route working!" });
 });
 
-export { router as authRoutes }; 
+export { router as authRoutes };
